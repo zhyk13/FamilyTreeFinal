@@ -1,6 +1,7 @@
-package Animal;
-import FamilyTree.FamilyTreeItem;
-import Human.Gender;
+package model.animal;
+
+import model.familyTree.FamilyTreeItem;
+import model.human.Gender;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;

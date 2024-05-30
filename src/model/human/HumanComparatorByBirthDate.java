@@ -1,4 +1,4 @@
-package Human;
+package model.human;
 
 import java.util.Comparator;
 

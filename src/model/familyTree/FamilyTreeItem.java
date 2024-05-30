@@ -1,5 +1,5 @@
-package FamilyTree;
-import Human.Gender;
+package model.familyTree;
+import model.human.Gender;
 import java.time.LocalDate;
 import java.util.List;
 

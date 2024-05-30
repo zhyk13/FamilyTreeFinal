@@ -1,7 +1,7 @@
-package FamilyTree;
-import Human.Gender;
-import Human.HumanComparatorByAge;
-import Human.HumanComparatorByBirthDate;
+package model.familyTree;
+import model.human.Gender;
+import model.human.HumanComparatorByAge;
+import model.human.HumanComparatorByBirthDate;
 import java.util.*;
 import java.util.Collections;
 import java.util.Iterator;
@@ -10,11 +10,11 @@ import java.io.Serializable;
 
 
 public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, Iterable<E> {
-    private Integer humansId = 1;
+    private Integer humansId = 0;
     private List<E> familyTree = new ArrayList<>();
 
     public void setItem(E human){
-        if (human.getId() == 0){
+        if (!containsName(human.getName())){
             human.setId(humansId++);
             familyTree.add(human);
             if (human.getFather() != null && !human.getFather().getChildren().contains(human)){
@@ -22,6 +22,19 @@ public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, It
             }
             if (human.getMother() != null && !human.getMother().getChildren().contains(human)){
                 human.getMother().setChildren(human);
+            }
+            if (!human.getChildren().isEmpty()) {
+                for (E kid: human.getChildren()){
+                    if (human.getGender() == Gender.Male){
+                        kid.setFather(human);
+                    }
+                    else{
+                        kid.setMother(human);
+                    }
+                }
+                if (human.getSpouse() != null){
+                    human.getSpouse().setSpouse(human);
+                }
             }
             for (E kid: human.getChildren()){
                 if (human.getGender() == Gender.Male){
@@ -66,6 +79,10 @@ public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, It
         return stringBuilder.toString();
     }
 
+    public void add(E human) {
+        familyTree.add(human);
+    }
+
     public String getNameList() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Список имен: \n");
@@ -73,6 +90,16 @@ public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, It
             stringBuilder.append(human.getName() + "\n");
         }
         return stringBuilder.toString();
+    }
+
+    public boolean containsName(String name) {
+        boolean rezult = false;
+        for (E human: familyTree) {
+            if (human.getName() == name) {
+                rezult = true;
+            }
+        }
+        return rezult;
     }
 
     @Override

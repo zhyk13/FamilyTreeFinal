@@ -1,6 +1,6 @@
-package Service;
+package model.service;
 
-import FamilyTree.FamilyTree;
+import model.familyTree.FamilyTree;
 import java.io.*;
 
 public class FileHandler implements Rewritable {

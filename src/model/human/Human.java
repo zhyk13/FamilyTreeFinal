@@ -1,5 +1,5 @@
-package Human;
-import FamilyTree.FamilyTreeItem;
+package model.human;
+import model.familyTree.FamilyTreeItem;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.Period;
@@ -14,6 +14,19 @@ public class Human implements Serializable, Comparable<Human>, FamilyTreeItem<Hu
     private Human father, mother;
     private Gender gender;
     private Human spouse;
+
+    public Human(Integer id, String name, LocalDate birthDate, LocalDate deathDate, List<Human> children, Human father,
+                 Human mother, Gender gender, Human spouse) {
+        this.id = id;
+        this.name = name;
+        this.birthDate = birthDate;
+        this.deathDate = deathDate;
+        this.children = children;
+        this.father = father;
+        this.mother = mother;
+        this.gender = gender;
+        this.spouse = spouse;
+    }
 
     public void setId(Integer id){
         this.id = id;
@@ -81,11 +94,16 @@ public class Human implements Serializable, Comparable<Human>, FamilyTreeItem<Hu
     }
 
     public Integer getAge(){
-        if (this.deathDate == null){
+        if ((this.deathDate == null) && (this.birthDate != null)) {
             return getPeriod(birthDate, LocalDate.now());
         }
         else{
-            return getPeriod(birthDate, deathDate);
+            if ((this.deathDate != null) && (this.birthDate != null)) {
+                return getPeriod(birthDate, deathDate);
+            }
+            else {
+                return null;
+            }
         }
     }
 
@@ -95,10 +113,6 @@ public class Human implements Serializable, Comparable<Human>, FamilyTreeItem<Hu
     }
 
     public List<Human> getChildren(){
-//        List<Human> listchildren = new ArrayList<>();
-//        for (Human kid: children) {
-//            listchildren.add(kid);
-//        }
         return new ArrayList<>(children);
     }
 
