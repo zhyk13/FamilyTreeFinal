@@ -1,4 +1,5 @@
 package presenter;
+import model.familyTree.FamilyTree;
 import model.human.Gender;
 import model.human.Human;
 import model.service.Service;
@@ -15,9 +16,9 @@ public class Presenter {
         service = new Service();
     }
 
-    public void addHuman(String name, LocalDate birthDate, LocalDate deathDate, List<Human> children, Human father,
-                         Human mother, Gender gender, Human spouse) {
-        service.addHuman(name, birthDate, deathDate, children, father, mother, gender, spouse);
+    public Human addHuman(String name, LocalDate birthDate, LocalDate deathDate, List<String> children, String father,
+                         String mother, Gender gender, String spouse) {
+        return service.addHuman(name, birthDate, deathDate, children, father, mother, gender, spouse);
     }
 
     public void getHumansList() {
@@ -25,8 +26,16 @@ public class Presenter {
         view.printAnswer(info);
     }
 
-    public void getFamilytreeInfo() {
-        service.getFamilytreeInfo();
+    public String getFamilytreeInfo() {
+        return service.getFamilytreeInfo();
+    }
+
+    public void loadFromFileFamilyTree(String fileName) {
+        service.loadFromFileFamilyTree(fileName);
+    }
+
+    public boolean saveToFileFamilyTree(String fileName) {
+        return service.saveToFileFamilyTree(fileName);
     }
 
 

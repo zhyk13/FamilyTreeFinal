@@ -137,15 +137,15 @@ public class Human implements Serializable, Comparable<Human>, FamilyTreeItem<Hu
         return  stringBuilder.toString();
     }
 
-    public void saveToFile(String filename) throws IOException, ClassNotFoundException {
-        ObjectOutputStream outputStrim = new ObjectOutputStream(new FileOutputStream(filename));
-        outputStrim.writeObject(this);
-    }
-
-    public Human loadFromFile(String filename) throws IOException, ClassNotFoundException{
-        ObjectInputStream inputStrim = new ObjectInputStream(new FileInputStream(filename));
-        return (Human) inputStrim.readObject();
-    }
+//    public void saveToFile(String filename) throws IOException, ClassNotFoundException {
+//        ObjectOutputStream outputStrim = new ObjectOutputStream(new FileOutputStream(filename));
+//        outputStrim.writeObject(this);
+//    }
+//
+//    public Human loadFromFile(String filename) throws IOException, ClassNotFoundException{
+//        ObjectInputStream inputStrim = new ObjectInputStream(new FileInputStream(filename));
+//        return (Human) inputStrim.readObject();
+//    }
 
     @Override
     public int compareTo(Human o) {

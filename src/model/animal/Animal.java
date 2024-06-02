@@ -16,6 +16,7 @@ public class Animal implements Serializable, Comparable<Animal>, FamilyTreeItem<
     private Animal father, mother;
     private Gender gender;
     private String breed;
+    private Animal spouse;
 
     public void setId(Integer id){
         this.id = id;
@@ -80,12 +81,12 @@ public class Animal implements Serializable, Comparable<Animal>, FamilyTreeItem<
 
     @Override
     public Animal getSpouse() {
-        return null;
+        return this.spouse;
     }
 
     @Override
     public void setSpouse(Animal animal) {
-
+        this.spouse = spouse;
     }
 
     public String getBreed(){

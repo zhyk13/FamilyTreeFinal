@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01e75201-5be3-441d-8167-5c2e4cfeb850" name="Changes" comment="Сделал ДЗ 5">
+    <list default="true" id="01e75201-5be3-441d-8167-5c2e4cfeb850" name="Changes" comment="Убрал вывод из сервиса&#10;Убрал из View создание людей">
+      <change afterPath="$PROJECT_DIR$/familyTreetest" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/commands/LoadFromFileFamilyTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/commands/SaveToFileFamilyTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/animal/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/animal/Animal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/human/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/human/Human.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/service/Service.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +36,12 @@
     &quot;assignee&quot;: &quot;zhyk13&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/zhyk13/FamilyTree_4.git&quot;,
-    &quot;accountId&quot;: &quot;4f081ff8-bb76-41c2-af73-daff7aba18a0&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/zhyk13/FamilyTree_5.git",
+    "accountId": "4f081ff8-bb76-41c2-af73-daff7aba18a0"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 7
@@ -124,7 +128,31 @@
       <option name="project" value="LOCAL" />
       <updated>1717073361515</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Сделал ДЗ 5">
+      <option name="closed" value="true" />
+      <created>1717073564096</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1717073564096</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Убрал вывод из сервиса">
+      <option name="closed" value="true" />
+      <created>1717321066751</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717321066751</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Убрал вывод из сервиса&#10;Убрал из View создание людей">
+      <option name="closed" value="true" />
+      <created>1717324697808</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717324697808</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,6 +170,9 @@
     <MESSAGE value="ДЗ-4" />
     <MESSAGE value="Сделал поля классов приватными" />
     <MESSAGE value="Сделал ДЗ 5" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сделал ДЗ 5" />
+    <MESSAGE value="Убрал вывод из сервиса" />
+    <MESSAGE value="Убрал вывод из сервиса&#10;Убрал из View создание людей" />
+    <MESSAGE value="Сделал запись/загрузку" />
+    <option name="LAST_COMMIT_MESSAGE" value="Сделал запись/загрузку" />
   </component>
 </project>
