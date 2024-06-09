@@ -10,13 +10,22 @@ import java.io.Serializable;
 
 
 public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, Iterable<E> {
-    private Integer humansId = 0;
+    private Integer humansId = 1;
     private List<E> familyTree = new ArrayList<>();
 
     public void setItem(E human){
         if (!containsName(human.getName())){
             human.setId(humansId++);
             familyTree.add(human);
+            if (human.getFather() != null) {
+                verificationOfAffiliationAndAdd(human.getFather());
+            }
+            if (human.getMother() != null) {
+                verificationOfAffiliationAndAdd(human.getMother());
+            }
+            if (human.getSpouse() != null) {
+                verificationOfAffiliationAndAdd(human.getSpouse());
+            }
             if (human.getFather() != null && !human.getFather().getChildren().contains(human)){
                 human.getFather().setChildren(human);
             }
@@ -24,6 +33,9 @@ public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, It
                 human.getMother().setChildren(human);
             }
             if (!human.getChildren().isEmpty()) {
+                for (E kid: human.getChildren()){
+                    verificationOfAffiliationAndAdd(kid);
+                }
                 for (E kid: human.getChildren()){
                     if (human.getGender() == Gender.Male){
                         kid.setFather(human);
@@ -51,7 +63,12 @@ public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, It
         else{
             System.out.println(human.getName() + " уже добавлен!");
         }
+    }
 
+    public void verificationOfAffiliationAndAdd(E human) {
+        if (human.getId() == null) {
+            setItem(human);
+        }
     }
 
     @Override
@@ -95,11 +112,20 @@ public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, It
     public boolean containsName(String name) {
         boolean rezult = false;
         for (E human: familyTree) {
-            if (human.getName() == name) {
+            if (Objects.equals(human.getName(), name)) {
                 rezult = true;
             }
         }
         return rezult;
+    }
+
+    public E getHumanByName(String name) {
+        for (E human : familyTree) {
+            if (human.getName().equals(name)) {
+                return human;
+            }
+        }
+        return null;
     }
 
     @Override

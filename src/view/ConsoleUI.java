@@ -1,8 +1,8 @@
 package view;
 
-import model.familyTree.FamilyTree;
 import model.human.Gender;
 import model.human.Human;
+import model.service.Rewritable;
 import presenter.Presenter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,17 +16,17 @@ public class ConsoleUI implements View {
     private Presenter presenter;
     private boolean work;
     private MainMenu menu;
+    private DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
 
-    public ConsoleUI() {
+    public ConsoleUI(Rewritable fileHandler) {
         scaner = new Scanner(System.in);
-        presenter = new Presenter(this);
+        presenter = new Presenter(this, fileHandler);
         work = true;
         menu = new MainMenu(this);
     }
 
     public void addHuman() {
         Human human;
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
         LocalDate birthDate = null;
         LocalDate deathDate = null;
         Gender gender;
@@ -35,61 +35,116 @@ public class ConsoleUI implements View {
         String father = null;
         String mother = null;
         String spouse = null;
-        System.out.println("Введите ФИО");
-        name = scaner.nextLine();
+        String kidName;
+        name = inputName("Введите ФИО");
         System.out.println("Введите 1 если пол М и 2, если пол Ж");
-        if (scaner.nextLine() == "1") {
+        if (scaner.nextLine().equals("1")) {
             gender = Gender.Male;
         }
         else {
             gender = Gender.Female;
         }
         System.out.println("Введите известные данные. Если информация отсутствует нажмите ввод.");
-        System.out.println("Введите дату рождения в формате yyyy-mm-dd:");
-        String input = scaner.nextLine();
-        if (input != "") {
-            birthDate = LocalDate.parse(input, formatter);
-        }
-        System.out.println("Введите дату смерти в формате yyyy-mm-dd:");
-        input = scaner.nextLine();
-        if (input != "") {
-            deathDate = LocalDate.parse(input, formatter);
-        }
-        System.out.println("Введмите имя отца: ");
-        input = scaner.nextLine();
-        if (input != "") {
-            father = input;
-        }
-        System.out.println("Введмите имя матери: ");
-        input = scaner.nextLine();
-        if (input != "") {
-            mother = input;
-        }
-        System.out.println("Введмите имя супруги(а): ");
-        input = scaner.nextLine();
-        if (input != "") {
-            spouse = input;
-        }
+        birthDate = inputDate("Введите дату рождения в формате yyyy-mm-dd:");
+        deathDate = inputDate("Введите дату смерти в формате yyyy-mm-dd:");
+        father = inputInfo("Введмите имя отца: ");
+        mother = inputInfo("Введмите имя матери: ");
+        spouse = inputInfo("Введмите имя супруги(а): ");
         System.out.println("Ввести детей? Да - нажмите 1, Нет - нажмите 2");
-        input = scaner.nextLine();
+        String input = scaner.nextLine();
         while (Objects.equals(input, "1")) {
             if (Objects.equals(input, "1")) {
+                System.out.println("Введите 1 если пол ребенка М и 2, если пол ребенка Ж");
+                if (scaner.nextLine().equals("1")) {
+                    kidName = "1";
+                }
+                else {
+                    kidName = "2";
+                }
                 System.out.println("Введмите имя ребенка: ");
-                children.add(scaner.nextLine());
+                kidName += scaner.nextLine();
+                children.add(kidName);
                 System.out.println("Ввести еще детей? Да - нажмите 1, Нет - нажмите 2");
                 input = scaner.nextLine();
             }
         }
         human = presenter.addHuman(name, birthDate, deathDate, children, father, mother, gender, spouse);
-        System.out.println(human.getName());
+        System.out.println(human.getName() + " добавлен в семейное дерево!");
+    }
+
+    public String inputName(String message) {
+        System.out.println(message);
+        String input = scaner.nextLine();
+        return input;
+    }
+
+    public String inputInfo(String message) {
+        System.out.println(message);
+        String input = scaner.nextLine();
+        if (input != "") {
+            return input;
+        }
+        else {
+            return null;
+        }
+    }
+
+    public LocalDate inputDate(String message) {
+        System.out.println(message);
+        String input = scaner.nextLine();
+        if (input != "") {
+            return LocalDate.parse(input, formatter);
+        }
+        else {
+            return null;
+        }
     }
 
     public void getHumansList() {
-        presenter.getHumansList();
+        System.out.println(presenter.getHumansList());
     }
 
     public void getFamilyTreeInfo() {
         System.out.println(presenter.getFamilytreeInfo());
+    }
+
+    public void AddInformation() {
+        String name;
+        LocalDate birthDate = null;
+        LocalDate deathDate = null;
+        String father = null;
+        String mother = null;
+        String spouse = null;
+        List<String> children = new ArrayList<>();
+        String kidName;
+        System.out.println("Введите имя человека о котором нужно добавить информацию: ");
+        name = scaner.nextLine();
+        System.out.println("Введите известные данные. Если информация отсутствует нажмите ввод.");
+        birthDate = inputDate("Введите дату рождения в формате yyyy-mm-dd:");
+        deathDate = inputDate("Введите дату смерти в формате yyyy-mm-dd:");
+        father = inputInfo("Введмите имя отца: ");
+        mother = inputInfo("Введмите имя матери: ");
+        spouse = inputInfo("Введмите имя супруги(а): ");
+        System.out.println("Ввести детей? Да - нажмите 1, Нет - нажмите 2");
+        String input = scaner.nextLine();
+        while (Objects.equals(input, "1")) {
+            if (Objects.equals(input, "1")) {
+                System.out.println("Введите 1 если пол ребенка М и 2, если пол ребенка Ж");
+                if (scaner.nextLine().equals("1")) {
+                    kidName = "1";
+                }
+                else {
+                    kidName = "2";
+                }
+                System.out.println("Введмите имя ребенка: ");
+                kidName += scaner.nextLine();
+                children.add(kidName);
+                System.out.println("Ввести еще детей? Да - нажмите 1, Нет - нажмите 2");
+                input = scaner.nextLine();
+            }
+        }
+        presenter.addInformation(name, birthDate, deathDate, father, mother,
+                spouse, children);
     }
 
     public void saveToFileFamilyTree() {

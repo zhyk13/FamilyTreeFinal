@@ -12,6 +12,7 @@ public class MainMenu {
         commandList.add((new AddHuman(consoleUI)));
         commandList.add(new GetHumansList(consoleUI));
         commandList.add(new GetFamilyTreeInfo(consoleUI));
+        commandList.add(new AddInformation(consoleUI));
         commandList.add(new SaveToFileFamilyTree(consoleUI));
         commandList.add(new LoadFromFileFamilyTree(consoleUI));
         commandList.add(new Finish(consoleUI));

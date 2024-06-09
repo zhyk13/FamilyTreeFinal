@@ -1,7 +1,7 @@
 package presenter;
-import model.familyTree.FamilyTree;
 import model.human.Gender;
 import model.human.Human;
+import model.service.Rewritable;
 import model.service.Service;
 import view.View;
 import java.time.LocalDate;
@@ -11,9 +11,9 @@ public class Presenter {
     private View view;
     private Service service;
 
-    public Presenter(View view) {
+    public Presenter(View view, Rewritable fileHandler) {
         this.view = view;
-        service = new Service();
+        this.service = new Service(fileHandler);
     }
 
     public Human addHuman(String name, LocalDate birthDate, LocalDate deathDate, List<String> children, String father,
@@ -21,9 +21,13 @@ public class Presenter {
         return service.addHuman(name, birthDate, deathDate, children, father, mother, gender, spouse);
     }
 
-    public void getHumansList() {
-        String info = service.getHumanList();
-        view.printAnswer(info);
+    public void addInformation(String name, LocalDate birthDate, LocalDate deathDate, String father, String mother,
+                               String spouse, List<String> children) {
+        service.addInformation(name, birthDate, deathDate, father, mother, spouse, children);
+    }
+
+    public String getHumansList() {
+        return service.getHumanList();
     }
 
     public String getFamilytreeInfo() {

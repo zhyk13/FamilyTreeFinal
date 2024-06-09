@@ -10,7 +10,6 @@ public class FamilyTreeIterator<T> implements Iterator<T> {
         this.familyTree = familyTree;
     }
 
-
     @Override
     public boolean hasNext() {
         return familyTree.size() > currentId;

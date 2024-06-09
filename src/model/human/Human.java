@@ -21,7 +21,7 @@ public class Human implements Serializable, Comparable<Human>, FamilyTreeItem<Hu
         this.name = name;
         this.birthDate = birthDate;
         this.deathDate = deathDate;
-        this.children = children;
+        this.children = children != null ? children : new ArrayList<>();
         this.father = father;
         this.mother = mother;
         this.gender = gender;
@@ -36,8 +36,11 @@ public class Human implements Serializable, Comparable<Human>, FamilyTreeItem<Hu
         this.name = name;
     }
 
-    public void setBirthDate(LocalDate birthDate, LocalDate deathDate){
+    public void setBirthDate(LocalDate birthDate){
         this.birthDate = birthDate;
+    }
+
+    public void setDeathDate(LocalDate deathDate){
         this.deathDate = deathDate;
     }
 
@@ -136,16 +139,6 @@ public class Human implements Serializable, Comparable<Human>, FamilyTreeItem<Hu
         }
         return  stringBuilder.toString();
     }
-
-//    public void saveToFile(String filename) throws IOException, ClassNotFoundException {
-//        ObjectOutputStream outputStrim = new ObjectOutputStream(new FileOutputStream(filename));
-//        outputStrim.writeObject(this);
-//    }
-//
-//    public Human loadFromFile(String filename) throws IOException, ClassNotFoundException{
-//        ObjectInputStream inputStrim = new ObjectInputStream(new FileInputStream(filename));
-//        return (Human) inputStrim.readObject();
-//    }
 
     @Override
     public int compareTo(Human o) {
